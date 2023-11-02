@@ -1,3 +1,4 @@
+import 'package:flix_id/presentation/misc/methods.dart';
 import 'package:flix_id/presentation/pages/movie_page/methods/movie_list.dart';
 import 'package:flix_id/presentation/providers/movie/now_playing_provider.dart';
 import 'package:flix_id/presentation/providers/movie/upcoming_provider.dart';
@@ -23,7 +24,9 @@ class MoviePage extends ConsumerWidget {
         Column(
           children: [
             userInfo(ref),
+            verticalSpace(40),
             searchBar(context),
+            verticalSpace(24),
             ...movieList(
               title: 'Now Playing',
               movies: ref.watch(nowPlayingProvider),
@@ -32,7 +35,7 @@ class MoviePage extends ConsumerWidget {
               },
             ),
             ...promotionList(promotionImageFileNames),
-            ... movieList(
+            ...movieList(
               title: 'Upcoming',
               movies: ref.watch(upComingProvider),
             )
