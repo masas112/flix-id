@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "500000490443",
+    "project_id": "flix-id-3a207",
+    "storage_bucket": "flix-id-3a207.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:500000490443:android:ddfd9afbee3e317b8f2c4e",
+        "android_client_info": {
+          "package_name": "com.masas.flix_id"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWkOCP3O2Dpse1O9Gk3E4sjaHD9Aw9d9w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
