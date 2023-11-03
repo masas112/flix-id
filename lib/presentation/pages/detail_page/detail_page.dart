@@ -1,5 +1,6 @@
 import 'package:flix_id/presentation/misc/constants.dart';
 import 'package:flix_id/presentation/misc/methods.dart';
+import 'package:flix_id/presentation/pages/detail_page/methods/movie_short_info.dart';
 import 'package:flix_id/presentation/providers/router/router_provider.dart';
 import 'package:flix_id/presentation/widgets/network_image_card.dart';
 import 'package:flutter/material.dart';
@@ -40,10 +41,12 @@ class DetailPage extends ConsumerWidget {
                       borderRadius: 15,
                       imageUrl: asyncMovieDetail.valueOrNull != null
                           ? 'https://image.tmdb.org/t/p/w500${asyncMovieDetail.value!.backdropPath ?? movie.posterPath}'
-                          : null,fit: BoxFit.cover,
+                          : null,
+                      fit: BoxFit.cover,
                     ),
                     verticalSpace(24),
-                    // ... movieShotInfo(),
+                    ...movieShortInfo(
+                        asyncMovieDetail: asyncMovieDetail, context: context),
                     verticalSpace(20),
                     // ... movieOverview(),
                     verticalSpace(40),
