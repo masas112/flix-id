@@ -22,6 +22,7 @@ class MoviePage extends ConsumerWidget {
     return ListView(
       children: [
         Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             userInfo(ref),
             verticalSpace(40),
@@ -34,11 +35,14 @@ class MoviePage extends ConsumerWidget {
                 // TODO: Move to movie detail page
               },
             ),
+            verticalSpace(30),
             ...promotionList(promotionImageFileNames),
+            verticalSpace(30),
             ...movieList(
               title: 'Upcoming',
               movies: ref.watch(upComingProvider),
-            )
+            ),
+            verticalSpace(100),
           ],
         )
       ],

@@ -18,10 +18,11 @@ class TmdbMovieRepository implements MovieRepository {
   TmdbMovieRepository({Dio? dio}) : _dio = dio ?? Dio();
 
   @override
-  Future<Result<List<Actor>>> getActor({required int id}) async{
+  Future<Result<List<Actor>>> getActor({required int id}) async {
     try {
       final response = await _dio!.get(
-          'https://api.themoviedb.org/3/movie/$id/credits?language=en-US',options: _options);
+          'https://api.themoviedb.org/3/movie/$id/credits?language=en-US',
+          options: _options);
 
       final results = List<Map<String, dynamic>>.from(response.data['cast']);
 
@@ -32,13 +33,13 @@ class TmdbMovieRepository implements MovieRepository {
   }
 
   @override
-  Future<Result<MovieDetail>> getDetail({required int id}) async{
+  Future<Result<MovieDetail>> getDetail({required int id}) async {
     try {
       final response = await _dio!.get(
           'https://api.themoviedb.org/3/movie/$id?language=en-US',
           options: _options);
 
-          return Result.success(MovieDetail.fromJSON(response.data));
+      return Result.success(MovieDetail.fromJSON(response.data));
     } on DioException catch (e) {
       return Result.failed('${e.message}');
     }
@@ -69,7 +70,7 @@ class TmdbMovieRepository implements MovieRepository {
 }
 
 enum _MovieCategory {
-  nowPlaying('now_Playing'),
+  nowPlaying('now_playing'),
   upComing('upcoming');
 
   final String _instring;

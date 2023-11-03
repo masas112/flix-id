@@ -12,16 +12,19 @@ class UpComing extends _$UpComing {
   @override
   FutureOr<List<Movie>> build() => const [];
 
-  Future<void> getMovies({int page = 1}) async{
+  Future<void> getMovies({int page = 1}) async {
     state = const AsyncLoading();
 
     GetMovieList getMovieList = ref.read(getMovieListProvider);
 
-    var result = await getMovieList(GetMovieListParam(category: MovieListCategories.upComing, page: page));
+    var result = await getMovieList(
+        GetMovieListParam(category: MovieListCategories.upComing, page: page));
 
-    switch(result){
-      case Success(value: final movies): state = AsyncData(movies);
-      case Failed(message: _): state = const AsyncData([]);
+    switch (result) {
+      case Success(value: final movies):
+        state = AsyncData(movies);
+      case Failed(message: _):
+        state = const AsyncData([]);
     }
   }
 }
