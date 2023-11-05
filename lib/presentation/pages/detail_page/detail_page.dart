@@ -1,3 +1,4 @@
+import 'package:flix_id/domain/entities/movie_detail.dart';
 import 'package:flix_id/presentation/misc/constants.dart';
 import 'package:flix_id/presentation/misc/methods.dart';
 import 'package:flix_id/presentation/pages/detail_page/methods/movie_overview.dart';
@@ -50,19 +51,25 @@ class DetailPage extends ConsumerWidget {
                     ...movieShortInfo(
                         asyncMovieDetail: asyncMovieDetail, context: context),
                     verticalSpace(20),
-                    ... movieOverview(asyncMovieDetail),
+                    ...movieOverview(asyncMovieDetail),
                     verticalSpace(40),
                   ],
                 ),
               ),
-              ... castAndCrew(
-                movie: movie, ref: ref
-              ),
+              ...castAndCrew(movie: movie, ref: ref),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 40, horizontal: 24),
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    MovieDetail? movieDetail = asyncMovieDetail.valueOrNull;
+
+                    if (movieDetail != null) {
+                      ref
+                          .read(routerProvider)
+                          .pushNamed('time-booking', extra: movieDetail);
+                    }
+                  },
                   style: ElevatedButton.styleFrom(
                     foregroundColor: backgroundColor,
                     backgroundColor: saffron,
