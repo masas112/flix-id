@@ -3,6 +3,8 @@ import 'package:flix_id/domain/entities/transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../widgets/seat.dart';
+
 class SeatBookingPage extends ConsumerStatefulWidget {
   final (MovieDetail, Transaction) transactionDetail;
   const SeatBookingPage({Key? key, required this.transactionDetail})
@@ -17,9 +19,12 @@ class _SeatBookingPageState extends ConsumerState<SeatBookingPage> {
   Widget build(BuildContext context) {
     final (MovieDetail, transaction) = widget.transactionDetail;
 
-    return Scaffold(
+    return const Scaffold(
       body: Center(
-        child: Text(transaction.toString()),
+        child: Seat(
+          number: 1,
+          status: SeatStatus.available,
+        ),
       ),
     );
   }
