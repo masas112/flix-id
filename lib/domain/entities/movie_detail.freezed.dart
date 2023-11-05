@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$MovieDetail {
   int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
+  String get overview => throw _privateConstructorUsedError;
   String? get posterPath => throw _privateConstructorUsedError;
   String? get backdropPath => throw _privateConstructorUsedError;
   int get runtime => throw _privateConstructorUsedError;
@@ -38,6 +39,7 @@ abstract class $MovieDetailCopyWith<$Res> {
   $Res call(
       {int id,
       String title,
+      String overview,
       String? posterPath,
       String? backdropPath,
       int runtime,
@@ -60,6 +62,7 @@ class _$MovieDetailCopyWithImpl<$Res, $Val extends MovieDetail>
   $Res call({
     Object? id = null,
     Object? title = null,
+    Object? overview = null,
     Object? posterPath = freezed,
     Object? backdropPath = freezed,
     Object? runtime = null,
@@ -74,6 +77,10 @@ class _$MovieDetailCopyWithImpl<$Res, $Val extends MovieDetail>
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      overview: null == overview
+          ? _value.overview
+          : overview // ignore: cast_nullable_to_non_nullable
               as String,
       posterPath: freezed == posterPath
           ? _value.posterPath
@@ -110,6 +117,7 @@ abstract class _$$MovieDetailImplCopyWith<$Res>
   $Res call(
       {int id,
       String title,
+      String overview,
       String? posterPath,
       String? backdropPath,
       int runtime,
@@ -130,6 +138,7 @@ class __$$MovieDetailImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? title = null,
+    Object? overview = null,
     Object? posterPath = freezed,
     Object? backdropPath = freezed,
     Object? runtime = null,
@@ -144,6 +153,10 @@ class __$$MovieDetailImplCopyWithImpl<$Res>
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      overview: null == overview
+          ? _value.overview
+          : overview // ignore: cast_nullable_to_non_nullable
               as String,
       posterPath: freezed == posterPath
           ? _value.posterPath
@@ -175,6 +188,7 @@ class _$MovieDetailImpl implements _MovieDetail {
   _$MovieDetailImpl(
       {required this.id,
       required this.title,
+      required this.overview,
       this.posterPath,
       this.backdropPath,
       required this.runtime,
@@ -186,6 +200,8 @@ class _$MovieDetailImpl implements _MovieDetail {
   final int id;
   @override
   final String title;
+  @override
+  final String overview;
   @override
   final String? posterPath;
   @override
@@ -204,7 +220,7 @@ class _$MovieDetailImpl implements _MovieDetail {
 
   @override
   String toString() {
-    return 'MovieDetail(id: $id, title: $title, posterPath: $posterPath, backdropPath: $backdropPath, runtime: $runtime, voteAverage: $voteAverage, genres: $genres)';
+    return 'MovieDetail(id: $id, title: $title, overview: $overview, posterPath: $posterPath, backdropPath: $backdropPath, runtime: $runtime, voteAverage: $voteAverage, genres: $genres)';
   }
 
   @override
@@ -214,6 +230,8 @@ class _$MovieDetailImpl implements _MovieDetail {
             other is _$MovieDetailImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
+            (identical(other.overview, overview) ||
+                other.overview == overview) &&
             (identical(other.posterPath, posterPath) ||
                 other.posterPath == posterPath) &&
             (identical(other.backdropPath, backdropPath) ||
@@ -229,6 +247,7 @@ class _$MovieDetailImpl implements _MovieDetail {
       runtimeType,
       id,
       title,
+      overview,
       posterPath,
       backdropPath,
       runtime,
@@ -246,6 +265,7 @@ abstract class _MovieDetail implements MovieDetail {
   factory _MovieDetail(
       {required final int id,
       required final String title,
+      required final String overview,
       final String? posterPath,
       final String? backdropPath,
       required final int runtime,
@@ -256,6 +276,8 @@ abstract class _MovieDetail implements MovieDetail {
   int get id;
   @override
   String get title;
+  @override
+  String get overview;
   @override
   String? get posterPath;
   @override

@@ -1,5 +1,6 @@
 import 'package:flix_id/presentation/misc/constants.dart';
 import 'package:flix_id/presentation/misc/methods.dart';
+import 'package:flix_id/presentation/pages/detail_page/methods/movie_overview.dart';
 import 'package:flix_id/presentation/pages/detail_page/methods/movie_short_info.dart';
 import 'package:flix_id/presentation/providers/router/router_provider.dart';
 import 'package:flix_id/presentation/widgets/network_image_card.dart';
@@ -10,6 +11,7 @@ import '../../../domain/entities/movie.dart';
 import '../../providers/movie/movie_detail_provider.dart';
 import '../../widgets/back_navigation_bar.dart';
 import 'methods/background.dart';
+import 'methods/cast_and_crew.dart';
 
 class DetailPage extends ConsumerWidget {
   final Movie movie;
@@ -48,12 +50,14 @@ class DetailPage extends ConsumerWidget {
                     ...movieShortInfo(
                         asyncMovieDetail: asyncMovieDetail, context: context),
                     verticalSpace(20),
-                    // ... movieOverview(),
+                    ... movieOverview(asyncMovieDetail),
                     verticalSpace(40),
                   ],
                 ),
               ),
-              // .. castAndCrew(),
+              ... castAndCrew(
+                movie: movie, ref: ref
+              ),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 40, horizontal: 24),

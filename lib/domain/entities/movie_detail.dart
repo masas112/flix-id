@@ -7,6 +7,7 @@ class MovieDetail with _$MovieDetail {
   factory MovieDetail({
     required int id,
     required String title,
+    required String overview,
     String? posterPath,
     String? backdropPath,
     required int runtime,
@@ -17,6 +18,7 @@ class MovieDetail with _$MovieDetail {
   factory MovieDetail.fromJSON(Map<String, dynamic> json) => MovieDetail(
       id: json['id'],
       title: json['title'],
+      overview: json['overview'],
       posterPath: json['poster_path'],
       backdropPath: json['backdrop_path'],
       runtime: json['runtime'],
