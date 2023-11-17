@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flix_id/domain/entities/movie_detail.dart';
 import 'package:flix_id/domain/entities/transaction.dart';
 import 'package:flix_id/presentation/misc/methods.dart';
+import 'package:flix_id/presentation/pages/seat_booking_page/methods/legend.dart';
 import 'package:flix_id/presentation/pages/seat_booking_page/methods/movie_screen.dart';
 import 'package:flix_id/presentation/pages/seat_booking_page/methods/seat_section.dart';
 import 'package:flix_id/presentation/widgets/back_navigation_bar.dart';
@@ -14,6 +15,7 @@ import '../../widgets/seat.dart';
 
 class SeatBookingPage extends ConsumerStatefulWidget {
   final (MovieDetail, Transaction) transactionDetail;
+
   const SeatBookingPage({Key? key, required this.transactionDetail})
       : super(key: key);
 
@@ -64,49 +66,24 @@ class _SeatBookingPageState extends ConsumerState<SeatBookingPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   seatSection(
-                    seatNumber: List.generate(18, (index) => index + 1),
-                    onTap: (seatNumber) {
-                      if (!selectedSeats.contains(seatNumber)) {
-                        setState(() {
-                          selectedSeats.add(seatNumber);
-                        });
-                      } else {
-                        setState(() {
-                          selectedSeats.remove(seatNumber);
-                        });
-                      }
-                    },
-                    seatStatusChecker: (seatNumber) =>
-                        reservedSeats.contains(seatNumber)
-                            ? SeatStatus.reserved
-                            : selectedSeats.contains(seatNumber)
-                                ? SeatStatus.selected
-                                : SeatStatus.available,
-                  ),
+                      seatNumber: List.generate(18, (index) => index + 1),
+                      onTap: onSeatTap,
+                      seatStatusChecker: seatStatusChecker),
                   horizontalSpace(30),
                   seatSection(
-                    seatNumber: List.generate(18, (index) => index + 19),
-                    onTap: (seatNumber) {
-                      if (!selectedSeats.contains(seatNumber)) {
-                        setState(() {
-                          selectedSeats.add(seatNumber);
-                        });
-                      } else {
-                        setState(() {
-                          selectedSeats.remove(seatNumber);
-                        });
-                      }
-                    },
-                    seatStatusChecker: (seatNumber) =>
-                        reservedSeats.contains(seatNumber)
-                            ? SeatStatus.reserved
-                            : selectedSeats.contains(seatNumber)
-                                ? SeatStatus.selected
-                                : SeatStatus.available,
-                  ),
+                      seatNumber: List.generate(18, (index) => index + 19),
+                      onTap: onSeatTap,
+                      seatStatusChecker: seatStatusChecker),
                 ],
               ),
-              // legend
+              verticalSpace(20),
+              legend(),
+              verticalSpace(40),
+              Text(
+                '${selectedSeats.length} seats selected',
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold),
+              ),
               // number of selected seats
               //button
             ],
@@ -115,4 +92,22 @@ class _SeatBookingPageState extends ConsumerState<SeatBookingPage> {
       ]),
     );
   }
+
+  void onSeatTap(seatNumber) {
+    if (!selectedSeats.contains(seatNumber)) {
+      setState(() {
+        selectedSeats.add(seatNumber);
+      });
+    } else {
+      setState(() {
+        selectedSeats.remove(seatNumber);
+      });
+    }
+  }
+
+  SeatStatus seatStatusChecker(seatNumber) => reservedSeats.contains(seatNumber)
+      ? SeatStatus.reserved
+      : selectedSeats.contains(seatNumber)
+          ? SeatStatus.selected
+          : SeatStatus.available;
 }
